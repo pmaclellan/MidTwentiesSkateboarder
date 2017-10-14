@@ -382,9 +382,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 728054a8e4f8e4821859612cae271e4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PushImpulse: 1
+  PushImpulse: 1.5
   TurnStepSize: 0.03
-  TurnDampingFactor: 0.97
+  TurnDampingFactor: 0.98
   BigPushTime: 0.5
   MinTimeBetweenPushes: 0.2
   MaxSpeed: 20
