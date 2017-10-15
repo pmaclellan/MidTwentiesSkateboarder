@@ -383,8 +383,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PushImpulse: 1.5
-  TurnStepSize: 0.03
-  TurnDampingFactor: 0.98
+  TurnStepSize: 0.008
+  TurnDampingFactor: 0.99
   BigPushTime: 0.5
   MinTimeBetweenPushes: 0.2
   MaxSpeed: 20
@@ -400,7 +400,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0.1
+  m_LinearDrag: 0.05
   m_AngularDrag: 0.1
   m_GravityScale: 0
   m_Material: {fileID: 0}

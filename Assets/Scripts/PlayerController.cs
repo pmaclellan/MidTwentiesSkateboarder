@@ -62,17 +62,18 @@ public class PlayerController : MonoBehaviour {
 			LastPushTime = Time.time;
 		}
 
-		//TODO: scale turn step size proportionally with speed i.e. turn slower when moving slower
 		float turnInput = Input.GetAxis ("Horizontal");
 		if (turnInput != 0.0f) {
 			if (rb2d.velocity.y > 0) {
+				//find curretn direction of motion
 				float theta = Mathf.Acos (rb2d.velocity.normalized.x);
-				float newTheta = theta + (TurnStepSize * turnInput * -1.0f);
+				//calculate turn amount based on input and current velocity
+				float newTheta = theta + (TurnStepSize * turnInput * rb2d.velocity.magnitude * -1.0f);
 				Vector2 newUnitVelocity = new Vector2 (Mathf.Cos (newTheta), Mathf.Sin (newTheta));
 				rb2d.velocity = newUnitVelocity * rb2d.velocity.magnitude * TurnDampingFactor;
 			} else if (rb2d.velocity.y < 0) {
 				float theta = Mathf.Acos (rb2d.velocity.normalized.x) * -1.0f;
-				float newTheta = theta + (TurnStepSize * turnInput * -1.0f);
+				float newTheta = theta + (TurnStepSize * turnInput * rb2d.velocity.magnitude * -1.0f);
 				Vector2 newUnitVelocity = new Vector2 (Mathf.Cos (newTheta), Mathf.Sin (newTheta));
 				rb2d.velocity = newUnitVelocity * rb2d.velocity.magnitude * TurnDampingFactor;
 			}
