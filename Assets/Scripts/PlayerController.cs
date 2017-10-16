@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour {
 	[Range(0.1f, 3.0f)]
 	public float PushImpulse;
 
+	public float BrakeMagnitude;
+
 	[Range(0.0f, 3.14f)]
 	public float TurnStepSize; //radians
 
@@ -43,6 +45,7 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
+	//TODO: add brake input
 	void FixedUpdate() {
 		if (Input.GetButtonDown("Push"))
 		{
@@ -60,6 +63,9 @@ public class PlayerController : MonoBehaviour {
 				rb2d.AddForce (PreviousMovementDirection * PushImpulse * pushForceMultiplier, ForceMode2D.Impulse);
 			}
 			LastPushTime = Time.time;
+		} else if (Input.GetButton("Brake")) {
+			//using else for brakes because you can't push and brake at the same time
+			rb2d.velocity -= (rb2d.velocity.normalized * BrakeMagnitude * Time.deltaTime);
 		}
 
 		float turnInput = Input.GetAxis ("Horizontal");
