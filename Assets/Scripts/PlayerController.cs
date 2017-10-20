@@ -45,7 +45,6 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	//TODO: add brake input
 	void FixedUpdate() {
 		if (Input.GetButtonDown("Push"))
 		{
@@ -65,7 +64,12 @@ public class PlayerController : MonoBehaviour {
 			LastPushTime = Time.time;
 		} else if (Input.GetButton("Brake")) {
 			//using else for brakes because you can't push and brake at the same time
-			rb2d.velocity -= (rb2d.velocity.normalized * BrakeMagnitude * Time.deltaTime);
+			Vector2 brakeAmount = rb2d.velocity.normalized * BrakeMagnitude * Time.deltaTime;
+			if (rb2d.velocity.magnitude >= brakeAmount.magnitude) {
+				rb2d.velocity -= brakeAmount;
+			} else {
+				rb2d.velocity = Vector2.zero;
+			}
 		}
 
 		float turnInput = Input.GetAxis ("Horizontal");
